@@ -167,7 +167,7 @@ function diagnose(){
   var colorText=ans['q9']!==undefined?QS[8].opts[ans['q9']].t:'未回答';
   var free=ans['q10']||'未記入';
   var prompt='あなたはヘブンリーまち子のえねヴェーダ診断AIです。アーユルヴェーダのエネルギー（火・風・水土）をベースに、その人の今の状態とコーチングの入口として機能する診断結果文を生成してください。\n\n【トーンのルール】\n- 押しつけがましくない、媚びない、でも温かい\n- 体験ベース・感覚的な言葉。エネルギーの言葉は自然に使う\n- ごく自然に関西弁がちらり\n- 売り込み感ゼロ。内省を促す締め\n\n【構成】\n1. タイプ名と一言でその性質\n2. 今のあなたの状態を本人の回答を踏まえて言語化\n3. エネルギー的に見た詰まっているポイントのヒント\n4. 個別セッションへの自然な導線\n\n全体400〜500字。段落ごとに空行。\n\n【スコア】火:'+sc['火']+'点 / 風:'+sc['風']+'点 / 水土:'+sc['水土']+'点\n【メインタイプ】'+main+'タイプ\n【サブタイプ】'+(sub?sub+'タイプ':'なし')+'\n【今のしんどさ】'+shindosa+'\n【エネルギー感】'+colorText+'\n【本人の言葉】'+free;
-  fetch('http://localhost:3000/api/diagnose',{
+  fetch('/api/diagnose',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({prompt:prompt})
