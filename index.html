@@ -6,7 +6,7 @@
 <title>えねヴェーダ診断</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-#app{padding:2rem 0;max-width:560px;margin:0 auto;font-family:sans-serif;}
+.wrap{padding:2rem 0;max-width:560px;margin:0 auto;font-family:sans-serif;}
 .hd{text-align:center;margin-bottom:2rem;}
 .ey{font-size:11px;letter-spacing:.12em;color:#888;text-transform:uppercase;display:block;margin-bottom:.6rem;}
 .hd h1{font-size:24px;font-weight:500;color:#1a1a1a;}
@@ -33,7 +33,9 @@
 .bnx{background:#B8860B;border:none;border-radius:8px;padding:.55rem 1.4rem;font-size:13px;color:#fff;cursor:pointer;font-weight:500;font-family:sans-serif;opacity:.35;pointer-events:none;}
 .bnx.ok{opacity:1;pointer-events:auto;}
 .cnt{font-size:12px;color:#888;}
-#res{display:none;padding:2rem 0;max-width:560px;margin:0 auto;font-family:sans-serif;}
+.inp{width:100%;background:#f9f9f9;border:0.5px solid #ddd;border-radius:8px;padding:.8rem .95rem;font-size:13px;color:#1a1a1a;margin-bottom:.75rem;font-family:sans-serif;}
+.inp:focus{outline:none;border-color:#B8860B;}
+.start-btn{width:100%;background:#B8860B;border:none;border-radius:8px;padding:.75rem;font-size:14px;color:#fff;cursor:pointer;font-weight:500;font-family:sans-serif;}
 .spinner{width:28px;height:28px;border:2px solid #eee;border-top-color:#B8860B;border-radius:50%;animation:sp .8s linear infinite;margin:0 auto .9rem;}
 @keyframes sp{to{transform:rotate(360deg);}}
 .ldg{text-align:center;padding:3rem 1rem;}
@@ -52,7 +54,22 @@
 </style>
 </head>
 <body>
-<div id="intro" style="padding:2rem 0;max-width:560px;margin:0 auto;font-family:sans-serif;"><div style="text-align:center;margin-bottom:2rem;"><span style="font-size:11px;letter-spacing:.12em;color:#888;text-transform:uppercase;display:block;margin-bottom:.6rem;">Ene-Veda Diagnosis</span><h1 style="font-size:24px;font-weight:500;color:#1a1a1a;">えねヴェーダ診断</h1><p style="font-size:14px;color:#666;margin-top:.4rem;line-height:1.6;">10の質問に答えて、あなたのエネルギータイプを知ろう</p></div><div style="background:#fff;border:0.5px solid #ddd;border-radius:12px;padding:1.4rem;"><p style="font-size:13px;color:#888;margin-bottom:1rem;">診断結果をメールでお届けします</p><input id="inp-name" type="text" placeholder="お名前" style="width:100%;background:#f9f9f9;border:0.5px solid #ddd;border-radius:8px;padding:.8rem .95rem;font-size:13px;color:#1a1a1a;margin-bottom:.75rem;box-sizing:border-box;font-family:sans-serif;"><input id="inp-email" type="email" placeholder="メールアドレス" style="width:100%;background:#f9f9f9;border:0.5px solid #ddd;border-radius:8px;padding:.8rem .95rem;font-size:13px;color:#1a1a1a;margin-bottom:1rem;box-sizing:border-box;font-family:sans-serif;"><button id="btn-start" onclick="startDiagnosis()" style="width:100%;background:#B8860B;border:none;border-radius:8px;padding:.75rem;font-size:14px;color:#fff;cursor:pointer;font-weight:500;font-family:sans-serif;">診断をはじめる →</button></div></div><div id="app" style="display:none;">
+
+<div id="intro" class="wrap">
+  <div class="hd">
+    <span class="ey">Ene-Veda Diagnosis</span>
+    <h1>えねヴェーダ診断</h1>
+    <p>10の質問に答えて、あなたのエネルギータイプを知ろう</p>
+  </div>
+  <div class="qc">
+    <p style="font-size:13px;color:#888;margin-bottom:1rem;">診断結果をメールでお届けします</p>
+    <input id="inp-name" class="inp" type="text" placeholder="お名前">
+    <input id="inp-email" class="inp" type="email" placeholder="メールアドレス">
+    <button class="start-btn" id="btn-start">診断をはじめる →</button>
+  </div>
+</div>
+
+<div id="app" class="wrap" style="display:none;">
   <div class="hd">
     <span class="ey">Ene-Veda Diagnosis</span>
     <h1>えねヴェーダ診断</h1>
@@ -66,12 +83,25 @@
     <button class="bnx" id="bnx">つぎへ →</button>
   </div>
 </div>
-<div id="res">
+
+<div id="res" class="wrap" style="display:none;">
   <div class="ldg" id="ldg"><div class="spinner"></div><p>あなたのエネルギーを読み取っています…</p></div>
   <div id="rout"></div>
 </div>
+
 <script>
-var userName='',userEmail='';function startDiagnosis(){var n=document.getElementById('inp-name').value.trim();var e=document.getElementById('inp-email').value.trim();if(!n||!e){alert('お名前とメールアドレスを入力してください');return;}userName=n;userEmail=e;document.getElementById('intro').style.display='none';document.getElementById('app').style.display='block';}(function(){
+var userName='', userEmail='';
+
+document.getElementById('btn-start').addEventListener('click', function(){
+  var n = document.getElementById('inp-name').value.trim();
+  var e = document.getElementById('inp-email').value.trim();
+  if(!n || !e){ alert('お名前とメールアドレスを入力してください'); return; }
+  userName = n;
+  userEmail = e;
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+});
+
 var QS=[
   {id:'q1',lbl:'Q1 — 身体の傾向',type:'s',txt:'あなたの体型・肌のイメージに近いのは？',opts:[{t:'引き締まっていてスタイルがいい。肌に艶があるほう',k:'火'},{t:'すらっとして細身。乾燥しやすかったり冷えやすい',k:'風'},{t:'丸みがあってグラマー。肌がなめらかでしっとりしてる',k:'水土'}]},
   {id:'q2',lbl:'Q2 — 得意なこと',type:'s',txt:'人からよく頼られたり、褒められることは？',opts:[{t:'判断が早い、結果を出す、場をまとめるリーダーシップ',k:'火'},{t:'アイデアが豊富、場を盛り上げる、表現する・伝える力',k:'風'},{t:'話を聞く、安心感を与える、コツコツ続ける・育てる',k:'水土'}]},
@@ -84,7 +114,9 @@ var QS=[
   {id:'q9',lbl:'Q9 — 今のエネルギー',type:'s',txt:'今の自分を色で例えると？（直感で選んでね）',opts:[{t:'赤・オレンジ系 — 熱い、燃えてる、でも燃えすぎかも',k:'火過多'},{t:'水色・白系 — 軽い、ふわふわ、でも不安定かも',k:'風過多'},{t:'緑・茶系 — 落ち着いてる、でも重い・停滞感がある',k:'水土過多'},{t:'グレー・くすみ系 — よくわからない、全部混ざってる感じ',k:'バランス崩れ'}]},
   {id:'q10',lbl:'Q10 — 本当はどうなりたい？',type:'f',txt:'今の自分に一番足りてないと感じること、または本当は手放したいことを自由に書いてください'}
 ];
+
 var cur=0,ans={};
+
 function renderQ(){
   var q=QS[cur];
   document.getElementById('pf').style.width=Math.round((cur+1)/QS.length*100)+'%';
@@ -117,7 +149,7 @@ function renderQ(){
         ans[q.id]=i;
         document.querySelectorAll('#sopts .opt').forEach(function(b){b.className='opt'+(parseInt(b.getAttribute('data-i'))===i?' on':'');});
         updateBtn();
-        if(cur<QS.length-1)setTimeoutvar userName='',userEmail='';function startDiagnosis(){var n=document.getElementById('inp-name').value.trim();var e=document.getElementById('inp-email').value.trim();if(!n||!e){alert('お名前とメールアドレスを入力してください');return;}userName=n;userEmail=e;document.getElementById('intro').style.display='none';document.getElementById('app').style.display='block';}(function(){goNext();},260);
+        if(cur<QS.length-1)setTimeout(function(){goNext();},260);
       });
     });
   }else if(q.type==='m'){
@@ -140,6 +172,7 @@ function renderQ(){
   }
   updateBtn();
 }
+
 function updateBtn(){
   var q=QS[cur],ok=false;
   if(q.type==='s')ok=ans[q.id]!==undefined;
@@ -147,14 +180,17 @@ function updateBtn(){
   else ok=(ans[q.id]||'').trim().length>0;
   document.getElementById('bnx').className='bnx'+(ok?' ok':'');
 }
+
 function goNext(){
   var q=QS[cur];
   if(q.type==='s'&&ans[q.id]===undefined)return;
   if(q.type==='f'&&!(ans[q.id]||'').trim())return;
   if(cur<QS.length-1){cur++;renderQ();}else{diagnose();}
 }
+
 document.getElementById('bnx').addEventListener('click',goNext);
 document.getElementById('bbk').addEventListener('click',function(){if(cur>0){cur--;renderQ();}});
+
 function diagnose(){
   document.getElementById('app').style.display='none';
   document.getElementById('res').style.display='block';
@@ -196,8 +232,8 @@ function diagnose(){
     document.getElementById('rty').addEventListener('click',function(){location.reload();});
   });
 }
+
 renderQ();
-})();
 </script>
 </body>
 </html>
