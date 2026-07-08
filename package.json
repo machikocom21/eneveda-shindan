@@ -1,6 +1,13 @@
 {
   "name": "eneveda-shindan",
   "version": "1.0.0",
-  "scripts": { "start": "node server.js" },
-  "dependencies": { "express": "^4.18.0", "cors": "^2.8.5", "dotenv": "^16.0.0" }
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0",
+    "resend": "^6.17.1"
+  }
 }
