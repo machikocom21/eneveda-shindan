@@ -149,7 +149,6 @@ function renderQ(){
         ans[q.id]=i;
         document.querySelectorAll('#sopts .opt').forEach(function(b){b.className='opt'+(parseInt(b.getAttribute('data-i'))===i?' on':'');});
         updateBtn();
-        if(cur<QS.length-1)setTimeout(function(){goNext();},260);
       });
     });
   }else if(q.type==='m'){
