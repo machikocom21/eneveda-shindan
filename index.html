@@ -36,6 +36,9 @@
 .inp{width:100%;background:#f9f9f9;border:0.5px solid #ddd;border-radius:8px;padding:.8rem .95rem;font-size:13px;color:#1a1a1a;margin-bottom:.75rem;font-family:sans-serif;}
 .inp:focus{outline:none;border-color:#B8860B;}
 .start-btn{width:100%;background:#B8860B;border:none;border-radius:8px;padding:.75rem;font-size:14px;color:#fff;cursor:pointer;font-weight:500;font-family:sans-serif;}
+.notes{margin-top:1.1rem;text-align:left;border-top:0.5px solid #eee;padding-top:1rem;}
+.notes-h{font-size:12px;font-weight:600;color:#666;margin-bottom:.6rem;}
+.notes p{font-size:11px;color:#999;line-height:1.7;margin-bottom:.6rem;}
 .spinner{width:28px;height:28px;border:2px solid #eee;border-top-color:#B8860B;border-radius:50%;animation:sp .8s linear infinite;margin:0 auto .9rem;}
 @keyframes sp{to{transform:rotate(360deg);}}
 .ldg{text-align:center;padding:3rem 1rem;}
@@ -63,9 +66,16 @@
   </div>
   <div class="qc">
     <p style="font-size:13px;color:#888;margin-bottom:1rem;">診断結果をメールでお届けします</p>
-    <input id="inp-name" class="inp" type="text" placeholder="お名前">
+    <input id="inp-name" class="inp" type="text" placeholder="お名前（ニックネーム可）">
     <input id="inp-email" class="inp" type="email" placeholder="メールアドレス">
-    <button class="start-btn" id="btn-start">診断をはじめる →</button>
+    <button class="start-btn" id="btn-start">✨ 診断を始める → ✨</button>
+    <div class="notes">
+      <div class="notes-h">【確認事項】</div>
+      <p>※ご登録いただいたメールアドレスに診断結果を送信します。Yahoo、hotmail、iCloudなどのフリーメールアドレス、携帯（docomo、au、softbankなど）では受信ができない場合がありますので、プロバイダのアドレスでのご登録をお勧めいたします。</p>
+      <p>※プライバシーポリシーについて：お客様の個人情報を第三者に開示することはございません。</p>
+      <p>※ご登録いただいたメールアドレスにはヘブンリーまち子より定期的に情報を配布させていただきます。</p>
+      <p>※ご不要な場合は１クリックで配信解除できます。</p>
+    </div>
   </div>
 </div>
 
