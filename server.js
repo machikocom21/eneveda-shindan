@@ -38,7 +38,7 @@ app.post('/api/diagnose', async (req, res) => {
 
     if (email) {
       await resend.emails.send({
-        from: 'えねヴェーダ診断 <onboarding@resend.dev>',
+        from: 'ヘブンリーまち子 <info@heavenly-feeling.com>',
         to: email,
         subject: 'えねヴェーダ診断の結果',
         html: `
@@ -63,7 +63,7 @@ app.post('/api/diagnose', async (req, res) => {
       // 3日後にセッション案内（お申込み最終日リマインド）を予約送信
       try {
         await resend.emails.send({
-          from: 'えねヴェーダ診断 <onboarding@resend.dev>',
+          from: 'ヘブンリーまち子 <info@heavenly-feeling.com>',
           to: email,
           scheduledAt: 'in 3 days',
           subject: '【本日まで】えねヴェーダ覚醒セッションのご案内',
