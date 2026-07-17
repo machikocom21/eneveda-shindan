@@ -90,7 +90,7 @@ app.post('/api/diagnose', async (req, res) => {
       await fetch('https://script.google.com/macros/s/AKfycbzQttbkSJ523waBpYy2i1ifq55ws0vLNe4LWBpzBJ-559npE9Llv_pj1PsRLje63q2U/exec', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, email: email, type: text.match(/^[^\n]+/)[0] })
+        body: JSON.stringify({ name: name, email: email, type: text.match(/^[^\n]+/)[0], text: text })
       });
     } catch(se) { console.error('Sheet error:', se.message); }
     res.json({ text });
