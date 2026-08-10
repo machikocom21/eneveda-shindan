@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 
 app.post('/api/diagnose', async (req, res) => {
   try {
-    const { prompt, name, email } = req.body;
+    const { prompt, name, email, answerDetails } = req.body;
     const cleanPrompt = Buffer.from(prompt, 'utf8').toString('utf8');
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -40,6 +40,8 @@ app.post('/api/diagnose', async (req, res) => {
       await resend.emails.send({
         from: 'ヘブンリーまち子 <info@heavenly-feeling.com>',
         to: email,
+        // 診断結果は48時間後に予約送信
+        scheduledAt: new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString(),
         subject: 'えねヴェーダ診断の結果',
         html: `
           <div style="font-family:sans-serif;max-width:560px;margin:0 auto;padding:2rem;">
@@ -60,12 +62,12 @@ app.post('/api/diagnose', async (req, res) => {
         `
       });
 
-      // 3日後にセッション案内（お申込み最終日リマインド）を予約送信
+      // 診断結果メール（48時間後）から3日後にセッション案内（お申込み最終日リマインド）を予約送信
       try {
         await resend.emails.send({
           from: 'ヘブンリーまち子 <info@heavenly-feeling.com>',
           to: email,
-          scheduledAt: 'in 3 days',
+          scheduledAt: new Date(Date.now() + (48 + 72) * 60 * 60 * 1000).toISOString(),
           subject: '【本日まで】えねヴェーダ覚醒セッションのご案内',
           html: `
             <div style="font-family:sans-serif;max-width:560px;margin:0 auto;padding:2rem;">
@@ -90,7 +92,13 @@ app.post('/api/diagnose', async (req, res) => {
       await fetch('https://script.google.com/macros/s/AKfycbzQttbkSJ523waBpYy2i1ifq55ws0vLNe4LWBpzBJ-559npE9Llv_pj1PsRLje63q2U/exec', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, email: email, type: text.match(/^[^\n]+/)[0], text: text })
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          type: text.match(/^[^\n]+/)[0],
+          text: text,
+          answerDetails: answerDetails || {}
+        })
       });
     } catch(se) { console.error('Sheet error:', se.message); }
     res.json({ text });
