@@ -52,14 +52,6 @@
 .cta{border:0.5px solid #B8860B;border-radius:12px;padding:1.4rem;text-align:center;margin-top:.75rem;}
 .cta p{font-size:14px;color:#555;margin-bottom:.9rem;line-height:1.7;}
 .ctab{background:#B8860B;color:#fff;border-radius:8px;padding:.65rem 1.8rem;font-size:14px;font-weight:500;cursor:pointer;border:none;font-family:sans-serif;}
-.done{background:#fff;border:0.5px solid #B8860B;border-radius:12px;padding:2.2rem 1.6rem;text-align:center;}
-.done-icon{font-size:30px;color:#B8860B;margin-bottom:.9rem;}
-.done h2{font-size:19px;font-weight:500;color:#1a1a1a;line-height:1.7;margin-bottom:1.1rem;}
-.done h2 .done-em{color:#B8860B;font-weight:600;}
-.done p{font-size:14px;color:#555;line-height:1.9;margin-bottom:.9rem;}
-.done .done-name{font-size:13px;color:#888;margin-bottom:.6rem;}
-.done-line{border:none;border-top:0.5px solid #eee;margin:1.4rem 0;}
-.done .done-note{font-size:12px;color:#999;line-height:1.8;text-align:left;margin-bottom:.5rem;}
 .errc{background:#f9f9f9;border:0.5px solid #ddd;border-radius:12px;padding:1.4rem;}
 .errc p{color:#666;font-size:13px;line-height:1.7;margin-bottom:.5rem;}
 .errc pre{font-size:11px;color:#999;background:#fff;padding:.5rem;border-radius:4px;overflow:auto;margin-bottom:.9rem;white-space:pre-wrap;word-break:break-all;}
@@ -75,7 +67,7 @@
     <p>10の質問に答えて、あなたのエネルギータイプを知ろう</p>
   </div>
   <div class="qc">
-    <p style="font-size:13px;color:#888;margin-bottom:1rem;">診断結果は48時間以内にメールでお届けします</p>
+    <p style="font-size:13px;color:#888;margin-bottom:1rem;">診断結果をメールでお届けします</p>
     <input id="inp-name" class="inp" type="text" placeholder="お名前（ニックネーム可）">
     <input id="inp-email" class="inp" type="email" placeholder="メールアドレス">
     <button class="start-btn" id="btn-start">✨ 診断を始める → ✨</button>
@@ -107,7 +99,7 @@
 <div id="res" class="wrap" style="display:none;">
   <div class="ldg" id="ldg"><div class="spinner"></div><p>あなたのエネルギーを読み取っています…</p>
     <p class="ldg-sub">300人以上のデータから導き出したあなたにぴったりの診断結果を完全カスタマイズで生成しています。しばらくお待ちください。</p>
-    <p class="ldg-note">この画面を閉じずにそのままお待ちください。</p>
+    <p class="ldg-note">これから表示される診断結果は一度閉じると再表示されません。<br>メールにも同じ内容をお送りしていますので、保存したい方はスクリーンショットまたはメールをご確認ください。</p>
   </div>
   <div id="rout"></div>
 </div>
@@ -245,18 +237,32 @@ function diagnose(){
   .then(function(r){return r.json();})
   .then(function(data){
     if(data.error)throw new Error(data.error);
+    var text=data.text;
+    var subLabel=sub?' × '+sub:'';
+    var paras=text.split(/\n\n+/).map(function(p){return '<p>'+p.replace(/\n/g,'<br>')+'</p>';}).join('');
     document.getElementById('ldg').style.display='none';
     document.getElementById('rout').innerHTML=
-      '<div class="done">'+
-      '<div class="done-icon">✦</div>'+
-      '<p class="done-name">'+userName+'さん、ご回答ありがとうございました。</p>'+
-      '<h2>診断結果は<br><span class="done-em">48時間以内にメール</span>でお送りします</h2>'+
-      '<p>あなたのエネルギーをひとつひとつ丁寧に読み解いて、<br>あなただけの診断結果をお届けします。</p>'+
-      '<p style="font-size:13px;color:#888;">お届け先：'+userEmail+'</p>'+
-      '<hr class="done-line">'+
-      '<p class="done-note">※ 迷惑メールフォルダに振り分けられる場合があります。届かない場合はご確認ください。</p>'+
-      '<p class="done-note">※ この画面は閉じていただいて大丈夫です。</p>'+
+      '<div class="rc"><span class="bdg">えねヴェーダ診断 結果</span><p class="rt">'+main+'タイプ'+subLabel+'</p><div class="rb">'+paras+'</div></div>'+
+      '<div class="cta">'+
+      '<p style="font-size:15px;font-weight:600;color:#1a1a1a;">あなたのエネルギーをさらに覚醒させ豊かさに変えるセッションをご用意しました。</p>'+
+      '<p>この診断結果「そうそう、まさに私だ」「ん？私はそんな感じじゃない・・・」どう感じましたか？</p>'+
+      '<p>少しでもあなたの内面が動いたら、それは今まさにエネルギーが覚醒しようとしているサインです。</p>'+
+      '<p style="text-align:left;margin-bottom:.4rem;">えねヴェーダ覚醒セッションでは、あなたの診断結果をもとに</p>'+
+      '<ul style="text-align:left;list-style:none;padding:0;margin:0 0 .9rem;font-size:14px;color:#555;line-height:1.9;">'+
+      '<li>💎 エネルギーがお金や豊かさを引き寄せない本当の理由を特定</li>'+
+      '<li>💎 無意識のブレーキをその場で外す体験</li>'+
+      '<li>💎 2026年、エネルギーで飛躍するための具体的な次の一手をお伝えします</li>'+
+      '</ul>'+
+      '<p>その瞬間を、あなたにも体験してほしい。</p>'+
+      '<p style="margin-bottom:.3rem;"><span style="text-decoration:line-through;color:#999;">通常 60分 11,000円</span></p>'+
+      '<p style="font-size:18px;font-weight:700;color:#B8860B;margin-bottom:.9rem;">今だけ特別価格 30分 2,000円</p>'+
+      '<p style="font-size:13px;color:#c0392b;font-weight:500;">診断結果がとどいてから3日以内のお申込み限定</p>'+
+      '<p>セッションの枠には限りがあります。<br>ピンときた方は迷わず今すぐお申込みください。</p>'+
+      '<button class="ctab" id="ctab">今すぐセッションに申込む ↗</button>'+
       '</div>';
+    document.getElementById('ctab').addEventListener('click',function(){
+      window.open('https://ws.formzu.net/dist/S332405692/','_blank');
+    });
   })
   .catch(function(e){
     document.getElementById('ldg').style.display='none';

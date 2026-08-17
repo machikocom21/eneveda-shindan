@@ -40,8 +40,6 @@ app.post('/api/diagnose', async (req, res) => {
       await resend.emails.send({
         from: 'ヘブンリーまち子 <info@heavenly-feeling.com>',
         to: email,
-        // 診断結果は48時間後に予約送信
-        scheduledAt: new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString(),
         subject: 'えねヴェーダ診断の結果',
         html: `
           <div style="font-family:sans-serif;max-width:560px;margin:0 auto;padding:2rem;">
@@ -62,12 +60,12 @@ app.post('/api/diagnose', async (req, res) => {
         `
       });
 
-      // 診断結果メール（48時間後）から3日後にセッション案内（お申込み最終日リマインド）を予約送信
+      // 3日後にセッション案内（お申込み最終日リマインド）を予約送信
       try {
         await resend.emails.send({
           from: 'ヘブンリーまち子 <info@heavenly-feeling.com>',
           to: email,
-          scheduledAt: new Date(Date.now() + (48 + 72) * 60 * 60 * 1000).toISOString(),
+          scheduledAt: 'in 3 days',
           subject: '【本日まで】えねヴェーダ覚醒セッションのご案内',
           html: `
             <div style="font-family:sans-serif;max-width:560px;margin:0 auto;padding:2rem;">
