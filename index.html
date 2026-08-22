@@ -68,7 +68,7 @@ body{background:linear-gradient(180deg,#fdfaf5 0%,#f7f0e3 100%);min-height:100vh
   <div class="hd">
     <span class="ey">Ene-Veda Diagnosis</span>
     <h1>えねヴェーダ診断</h1>
-    <p>10の質問に答えて、あなたのエネルギータイプを知ろう</p>
+    <p>11の質問に答えて、あなたのエネルギータイプを知ろう</p>
   </div>
   <div class="qc">
     <p style="font-size:13px;color:#888;margin-bottom:1rem;">診断結果をメールでお届けします</p>
@@ -89,7 +89,7 @@ body{background:linear-gradient(180deg,#fdfaf5 0%,#f7f0e3 100%);min-height:100vh
   <div class="hd">
     <span class="ey">Ene-Veda Diagnosis</span>
     <h1>えねヴェーダ診断</h1>
-    <p>10の質問に答えて、あなたのエネルギータイプを知ろう</p>
+    <p>11の質問に答えて、あなたのエネルギータイプを知ろう</p>
   </div>
   <div class="pb"><div class="pf" id="pf" style="width:10%"></div></div>
   <div id="qa"></div>
@@ -131,8 +131,8 @@ var QS=[
   {id:'q7',lbl:'Q7 — 回復のスタイル',type:'s',txt:'エネルギー切れの日、自分をどう扱ってあげたい？',opts:[{t:'いい場所・いいものに触れる。自分に見合ったご褒美をあげる',k:'火'},{t:'どこかへ出かける。知らない景色や新しい刺激で切り替える',k:'風'},{t:'家から出ない。いつもの流れの中でゆっくり戻していく',k:'水土'}]},
   {id:'q8',lbl:'Q8 — 今のしんどさ（複数選択OK）',type:'m',txt:'今、自分に当てはまると感じるものを選んでください',opts:[{t:'頑張っているのに結果が見えない'},{t:'やりたいことが多すぎて散漫になっている'},{t:'与えてばかりで自分が空っぽになってきた'},{t:'変化したいのに動けない・現状に縛られてる感じ'},{t:'感情に振り回されて落ち着く場所が見つからない'}]},
   {id:'q9',lbl:'Q9 — 今のエネルギー',type:'s',txt:'今の自分を天気で例えると？（直感で選んでね）',opts:[{t:'炎天下・真夏日 — 熱くて眩しい、でも焼けつきそうかも',k:'火過多'},{t:'強風・台風前 — 勢いはあるけど、落ち着かない・不安定かも',k:'風過多'},{t:'どんより曇り — 静かで落ち着いてる、でも重い・停滞感がある',k:'水土過多'},{t:'濃霧・変わりやすい天気 — よくわからない、全部混ざってる感じ',k:'バランス崩れ'}]},
-  {id:'q10a',lbl:'Q10-A — 今の悩み',type:'f',txt:'今、自分に一番しんどいと感じていること、または手放したいことはなんですか？自由に書いてください'},
-  {id:'q10b',lbl:'Q10-B — 未来の望み',type:'f',txt:'それを手放した先に、どんな自分になっていたい？「こうなったら最高」という望みを自由に書いてください'}
+  {id:'q10',lbl:'Q10 — 今の悩み',type:'f',txt:'今、自分に一番しんどいと感じていること、または手放したいことはなんですか？自由に書いてください'},
+  {id:'q11',lbl:'Q11 — 未来の望み',type:'f',txt:'それを手放した先に、どんな自分になっていたい？「こうなったら最高」という望みを自由に書いてください'}
 ];
 
 var cur=0,ans={};
@@ -220,9 +220,9 @@ function diagnose(){
   var sub=sorted[1][1]>=2?sorted[1][0]:null;
   var shindosa=(ans['q8']||[]).map(function(i){return QS[7].opts[i].t;}).join('、')||'特になし';
   var energyText=ans['q9']!==undefined?QS[8].opts[ans['q9']].t:'未回答';
-  var worry=ans['q10a']||'未記入';
-  var wish=ans['q10b']||'未記入';
-  // Q1〜Q9の選択内容（日本語テキスト）とQ10-A・Q10-Bの自由記述をスプレッドシート保存用にまとめる
+  var worry=ans['q10']||'未記入';
+  var wish=ans['q11']||'未記入';
+  // Q1〜Q9の選択内容（日本語テキスト）とQ10・Q11の自由記述をスプレッドシート保存用にまとめる
   var summaryLines=[];
   for(var j=0;j<9;j++){
     var sq=QS[j],sa=ans[sq.id],val;
