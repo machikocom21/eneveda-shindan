@@ -52,7 +52,7 @@ body{background:linear-gradient(180deg,#fdfaf5 0%,#f7f0e3 100%);min-height:100vh
 .bdg{display:inline-block;font-size:11px;letter-spacing:.1em;padding:3px 10px;border-radius:20px;background:#f9f9f9;color:#B8860B;border:0.5px solid #B8860B;margin-bottom:.9rem;}
 .rt{font-size:21px;font-weight:500;color:#1a1a1a;margin-bottom:.9rem;}
 .rb p{font-size:14px;color:#555;line-height:1.9;margin-bottom:.9em;}
-.cta{border:0.5px solid #B8860B;border-radius:12px;padding:1.4rem;text-align:center;margin-top:.75rem;}
+.cta{background:linear-gradient(160deg,#fdf6e8,#f5ebd4);border:1px solid rgba(184,134,11,.35);box-shadow:0 6px 20px rgba(184,134,11,.12);border-radius:12px;padding:1.4rem;text-align:center;margin-top:.75rem;}
 .cta p{font-size:14px;color:#555;margin-bottom:.9rem;line-height:1.7;}
 .ctab{background:linear-gradient(135deg,#D4AF37,#B8860B);box-shadow:0 4px 14px rgba(184,134,11,.3);transition:transform .2s,box-shadow .2s;color:#fff;border-radius:8px;padding:.65rem 1.8rem;font-size:14px;font-weight:500;cursor:pointer;border:none;font-family:sans-serif;}
 .ctab:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(184,134,11,.4);}
@@ -265,9 +265,9 @@ function diagnose(){
     document.getElementById('rout').innerHTML=
       '<div class="rc"><span class="bdg">えねヴェーダ診断 結果</span><p class="rt">'+main+'タイプ'+subLabel+'</p><div class="rb">'+paras+'</div></div>'+
       '<div class="cta">'+
-      '<p style="font-size:15px;font-weight:600;color:#1a1a1a;">あなたのエネルギーをさらに覚醒させ豊かさに変えるセッションをご用意しました。</p>'+
-      '<p>この診断結果「そうそう、まさに私だ」「ん？私はそんな感じじゃない・・・」どう感じましたか？</p>'+
-      '<p>少しでもあなたの内面が動いたら、それは今まさにエネルギーが覚醒しようとしているサインです。</p>'+
+      '<p style="font-size:15px;font-weight:600;color:#1a1a1a;text-align:left;">あなたのエネルギーをさらに覚醒させ豊かさに変える<br>セッションをご用意しました。</p>'+
+      '<p style="text-align:left;">この診断結果「そうそう、まさに私だ」<br>「ん？私はそんな感じじゃない・・・」どう感じましたか？</p>'+
+      '<p style="text-align:left;">少しでもあなたの内面が動いたら、<br>それは今まさにエネルギーが覚醒しようとしているサインです。</p>'+
       '<p style="text-align:left;margin-bottom:.4rem;">えねヴェーダ覚醒セッションでは、あなたの診断結果をもとに</p>'+
       '<ul style="text-align:left;list-style:none;padding:0;margin:0 0 .9rem;font-size:14px;color:#555;line-height:1.9;">'+
       '<li>💎 エネルギーがお金や豊かさを引き寄せない本当の理由を特定</li>'+
