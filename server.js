@@ -8,6 +8,8 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
+// 背景画像などの静的ファイルを配信（imagesディレクトリのみ公開）
+app.use('/images', express.static(__dirname + '/images'));
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
