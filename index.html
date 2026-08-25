@@ -225,6 +225,19 @@ function seasonMessage(now){
   return '一年のエネルギーを静かに見つめ直し、次への土台を整える季節になっています。今この内省の時期にどう在り方を定めるかが重要な時期です。'; // 11/7〜1/16
 }
 
+// セッション案内の締め2行も季節に連動させる（seasonMessageと同じ8区分・同じ境界日）
+function seasonCta(now){
+  var d=now||new Date(),md=(d.getMonth()+1)*100+d.getDate();
+  if(md>=117&&md<=203)return 'ここから春への切り替わりの始まり🌙✨<br>ここから思い切り次のステージへの準備を整えたいという方だけお越しくださいね。';
+  if(md>=204&&md<=416)return 'ここから芽吹きの始まり🌱✨<br>ここから思い切り新しいエネルギーを受け取りたいという方だけお越しくださいね。';
+  if(md>=417&&md<=504)return 'ここから夏への切り替わりの始まり🌤✨<br>ここから思い切り勢いあるエネルギーを受け取りたいという方だけお越しくださいね。';
+  if(md>=505&&md<=718)return 'ここから燃え上がる季節の始まり🔥✨<br>ここから思い切り力強いエネルギーを受け取りたいという方だけお越しくださいね。';
+  if(md>=719&&md<=806)return 'ここから実りへ向かう切り替わりの始まり🌾✨<br>ここから思い切り豊かさへの一歩を受け取りたいという方だけお越しくださいね。';
+  if(md>=807&&md<=1019)return 'ここから実りの秋の始まり🌾✨<br>ここから思い切り豊潤な豊かさを受け取りたいという方だけお越しくださいね。';
+  if(md>=1020&&md<=1106)return 'ここから冬への切り替わりの始まり🍂✨<br>ここから思い切り受け取ったものを味わいたいという方だけお越しくださいね。';
+  return 'ここから静けさの中で満ちていく季節の始まり❄️✨<br>ここから思い切り内なる豊かさを整えたいという方だけお越しくださいね。'; // 11/7〜1/16
+}
+
 function diagnose(){
   document.getElementById('app').style.display='none';
   document.getElementById('res').style.display='block';
@@ -266,20 +279,19 @@ function diagnose(){
     document.getElementById('rout').innerHTML=
       '<div class="rc"><span class="bdg">えねヴェーダ診断 結果</span><p class="rt">'+main+'タイプ'+subLabel+'</p><div class="rb">'+paras+'</div></div>'+
       '<div class="cta">'+
-      '<p style="font-size:15px;font-weight:600;color:#1a1a1a;text-align:center;">あなたのエネルギーをさらに覚醒させ豊かさに変える<br>セッションをご用意しました。</p>'+
+      '<p style="font-size:15px;font-weight:600;color:#1a1a1a;text-align:center;">あなたのエネルギーをさらに豊かさへと変える<br>セッションをご用意しました。</p>'+
       '<p style="text-align:center;">この診断結果「そうそう、まさに私だ」<br>「ん？私はそんな感じじゃない・・・」どう感じましたか？</p>'+
-      '<p style="text-align:center;">少しでもあなたの内面が動いたら、<br>それは今まさにエネルギーが覚醒しようとしているサインです。</p>'+
-      '<p style="text-align:left;margin-bottom:.4rem;">えねヴェーダ覚醒セッションでは、あなたの診断結果をもとに</p>'+
+      '<p style="text-align:center;">少しでもあなたの内面が動いたら、それは今まさにエネルギーが変容し本来の豊かさにアクセスしようとしているサインです。</p>'+
+      '<p style="text-align:left;margin-bottom:.4rem;">えねヴェーダ Abundanceセッションでは、あなたの診断結果をもとに</p>'+
       '<ul style="text-align:left;list-style:none;padding:0;margin:0 0 .9rem;font-size:14px;color:#555;line-height:1.9;">'+
-      '<li>💎 エネルギーがお金や豊かさを引き寄せない本当の理由を特定</li>'+
+      '<li>💎 お金や豊かさを止めている本当の理由</li>'+
       '<li>💎 無意識のブレーキをその場で外す体験</li>'+
-      '<li>💎 2026年、エネルギーで飛躍するための具体的な次の一手をお伝えします</li>'+
+      '<li>💎 2026年、全方位で豊かさを受け取るための具体的な次の一手をお伝えします</li>'+
       '</ul>'+
-      '<p>その瞬間を、あなたにも体験してほしい。</p>'+
       '<p style="margin-bottom:.3rem;"><span style="text-decoration:line-through;color:#999;">通常 60分 15,000円</span></p>'+
       '<p style="font-size:18px;font-weight:700;color:#B8860B;margin-bottom:.9rem;">今だけ特別価格 30分 5,500円</p>'+
       '<p style="font-size:13px;color:#c0392b;font-weight:500;">診断結果がとどいてから3日以内のお申込み限定</p>'+
-      '<p>セッションの枠には限りがあります。<br>ピンときた方は迷わず今すぐお申込みください。</p>'+
+      '<p>'+seasonCta()+'</p>'+
       '<button class="ctab" id="ctab">今すぐセッションに申込む ↗</button>'+
       '</div>';
     document.getElementById('ctab').addEventListener('click',function(){
