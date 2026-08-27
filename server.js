@@ -1,4 +1,8 @@
-require('dotenv').config();
+// override:true … シェル側に同名の環境変数が残っていても .env の値を優先する。
+// これがないと、開発者のシェルに export された ANTHROPIC_API_KEY（Claude Code用）を
+// アプリが使ってしまい、キーを分けた意味がなくなる。
+// 本番では .env を配置せずプラットフォームの環境変数を使うため影響なし。
+require('dotenv').config({ override: true });
 const express = require('express');
 const cors = require('cors');
 const { Resend } = require('resend');
