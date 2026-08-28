@@ -248,6 +248,7 @@ function diagnose(){
   var sorted=Object.entries(sc).sort(function(a,b){return b[1]-a[1];});
   var main=sorted[0][0];
   var sub=sorted[1][1]>=2?sorted[1][0]:null;
+  var typeLabel=main+'タイプ'+(sub?' × '+sub+'タイプ':'');
   var shindosa=(ans['q8']||[]).map(function(i){return QS[7].opts[i].t;}).join('、')||'特になし';
   var energyText=ans['q9']!==undefined?QS[8].opts[ans['q9']].t:'未回答';
   var worry=ans['q10']||'未記入';
@@ -269,7 +270,7 @@ function diagnose(){
   fetch('/api/diagnose',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({prompt:prompt,name:userName,email:userEmail,answerDetails:answerDetails})
+    body:JSON.stringify({prompt:prompt,name:userName,email:userEmail,answerDetails:answerDetails,typeLabel:typeLabel})
   })
   .then(function(r){return r.json();})
   .then(function(data){

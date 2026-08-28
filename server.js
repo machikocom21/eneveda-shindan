@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 
 app.post('/api/diagnose', async (req, res) => {
   try {
-    const { prompt, name, email, answerDetails } = req.body;
+    const { prompt, name, email, answerDetails, typeLabel } = req.body;
     const cleanPrompt = Buffer.from(prompt, 'utf8').toString('utf8');
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -50,6 +50,7 @@ app.post('/api/diagnose', async (req, res) => {
         html: `
           <div style="font-family:sans-serif;max-width:560px;margin:0 auto;padding:2rem;">
             <h2 style="color:#B8860B;">${name}さんのえねヴェーダ診断結果</h2>
+            <p style="font-size:17px;font-weight:600;color:#1a1a1a;margin-bottom:1rem;">${typeLabel || ''}</p>
             <div style="line-height:1.9;color:#333;">
               ${text.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>').replace(/^/, '<p>').replace(/$/, '</p>')}
             </div>
