@@ -100,7 +100,7 @@ app.post('/api/diagnose', async (req, res) => {
         body: JSON.stringify({
           name: name,
           email: email,
-          type: text.match(/^[^\n]+/)[0],
+          type: typeLabel || '',
           text: text,
           answerDetails: answerDetails || {}
         })
