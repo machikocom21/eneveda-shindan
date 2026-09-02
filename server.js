@@ -85,13 +85,13 @@ app.post('/api/diagnose', async (req, res) => {
           from: 'ヘブンリーまち子 <info@heavenly-feeling.com>',
           to: email,
           scheduledAt: 'in 3 days',
-          subject: '【本日まで】えねヴェーダ覚醒セッションのご案内',
+          subject: '【本日まで】えねヴェーダ Abundanceセッションのご案内',
           html: `
             <div style="font-family:sans-serif;max-width:560px;margin:0 auto;padding:2rem;">
               <h2 style="color:#B8860B;">${name}さんへ</h2>
-              <p style="color:#555;font-size:14px;line-height:1.9;">先日は「えねヴェーダ診断」をお受けいただきありがとうございました。<br>あなたのエネルギーをさらに覚醒させ、豊かさに変えるセッションのご案内です。</p>
-              <p style="color:#555;font-size:14px;line-height:1.9;">診断結果を読んで「そうそう、まさに私だ」「ん？私はそんな感じじゃない・・・」と、少しでも内面が動いたなら、それは今まさにエネルギーが覚醒しようとしているサインです。</p>
-              <p style="color:#555;font-size:14px;line-height:1.9;">えねヴェーダ覚醒セッションでは、あなたの診断結果をもとに<br>💎 エネルギーがお金や豊かさを引き寄せない本当の理由を特定<br>💎 無意識のブレーキをその場で外す体験<br>💎 2026年、エネルギーで飛躍するための具体的な次の一手をお伝えします</p>
+              <p style="color:#555;font-size:14px;line-height:1.9;">先日は「えねヴェーダ診断」をお受けいただきありがとうございました。<br>あなたのエネルギーをさらに豊かさへと変えるセッションのご案内です。</p>
+              <p style="color:#555;font-size:14px;line-height:1.9;">診断結果を読んで「そうそう、まさに私だ」「ん？私はそんな感じじゃない・・・」と、少しでも内面が動いたなら、それは今まさにエネルギーが変容し本来の豊かさにアクセスしようとしているサインです。</p>
+              <p style="color:#555;font-size:14px;line-height:1.9;">えねヴェーダ Abundanceセッションでは、あなたの診断結果をもとに<br>💎 お金や豊かさを止めている本当の理由<br>💎 無意識のブレーキをその場で外す体験<br>💎 2026年、全方位で豊かさを受け取るための具体的な次の一手をお伝えします</p>
               <p style="font-size:14px;line-height:1.9;"><span style="text-decoration:line-through;color:#999;">通常 60分 15,000円</span><br><strong style="color:#B8860B;font-size:17px;">今だけ特別価格 30分 5,500円</strong></p>
               <p style="color:#c0392b;font-size:14px;font-weight:bold;">お申込みは本日まで。セッションの枠には限りがあります。</p>
               <a href="https://ws.formzu.net/dist/S332405692/" style="display:inline-block;background:#B8860B;color:#fff;padding:.75rem 2rem;border-radius:8px;text-decoration:none;font-weight:500;">今すぐセッションに申込む</a>
